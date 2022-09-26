@@ -1,7 +1,6 @@
 //
 // Modal
 //
-
 // Base
 .modal {
   // Mobile header
@@ -21,9 +20,88 @@
     }
   }
 
+  .animation-modal{
+    animation:fadein .5s ease-in-out;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity:0;
+    }
+    to {
+      opacity:1;
+    }
+  }
+
   // Mobile dialog
   .modal-dialog {
     outline: none !important;
+  }
+
+  .modal-title {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 600;
+  }
+
+  .bg-dark-cyan {
+    background-color: #55b7b6;
+  }
+
+  .bg-orange {
+    background-color: #ff712b;
+  }
+
+  .bg-purple {
+    background-color: #5945b4;
+  }
+
+  .bg-blue {
+    background-color: #0477b9;
+  }
+
+  .text-white {
+    color: white;
+  }
+
+  .btn-batal{
+    border: none;
+    background-color: white;
+    font-weight: 600;
+  }
+
+  .hide-tutorial{
+    margin: 0 auto;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-left: 40%;
+  }
+  
+.submit-btn {
+  background: #cb2939;
+  border-radius: 10px;
+  color: white;
+}
+
+  input[type="checkbox"] {
+    accent-color: #CB2939;
+}
+
+  .step-border {
+    border: 10px solid #ffffff;
+    box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+  }
+
+  .number {
+    background: white;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: fit-content;
+    margin-top: -12%;
+    font-size: 23px;
+    font-weight: bold;
+
   }
 }
 

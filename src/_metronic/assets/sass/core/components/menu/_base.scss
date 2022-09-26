@@ -1,7 +1,7 @@
 //
 // Menu Base
 //
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
 // Menu group
 .menu-group {
   display: flex;
@@ -30,6 +30,96 @@
   margin: 0;
   list-style: none;
   flex-direction: column;
+}
+
+.title {
+  font-size: 30px;
+  width: 100%;
+  align-items: center;
+}
+
+.submit-btn {
+  background: #cb2939;
+  border-radius: 10px;
+  border: 1px solid #cb2939;
+  color: white;
+  margin: 0 auto;
+  width: 60%;
+  margin-top: 3%;
+  padding: 1% 0;
+}
+
+.upload-file {
+  background: rgba(203, 41, 57, 0.03);
+  border: 2px dashed #cb2939;
+  border-radius: 10px;
+  padding: 5%;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.upload-file2 {
+  background: #d9d9d9;
+  width: 54.5%;
+  border-radius: 20px;
+  padding: 4% 5%;
+  margin: 0 auto;
+}
+
+.pdf-logo {
+  padding: 10px 13px;
+  background: rgba(203, 41, 57, 0.16);
+  border-radius: 20px;
+}
+
+.font-600 {
+  font-weight: 600;
+}
+
+.keterangan {
+  font-size: 12px;
+  margin-top: -10%;
+}
+
+.btn-bubuhkan {
+  background: #cb2939;
+  color: white;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 2% 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.preview-btn {
+  justify-content: space-between;
+  display: flex;
+}
+
+.pagination-pdf {
+  border: none;
+  background: #d9d9d9;
+}
+
+.btn-download {
+  background: #cb2939;
+  border-radius: 10px;
+  color: white;
+  border: 1px solid #cb2939;
+  padding: 1.5% 0;
+  font-weight: 500;
+  width: 45%;
+}
+
+.btn-kirim {
+  background: white;
+  border-radius: 10px;
+  color: #cb2939;
+  border: 1px solid #cb2939;
+  padding: 1.5% 0;
+  font-weight: 500;
+  width: 45%;
 }
 
 // Menu item
@@ -294,4 +384,68 @@
   to {
     margin-bottom: 0;
   }
+}
+
+.title-internal {
+  font-size: 20px;
+  margin: 2% 6%;
+  position: absolute;
+}
+
+.title-pembubuhan {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.top-spacing {
+  margin-top: 8%;
+}
+
+.add-doc {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.form-add-doc {
+  margin: 0 auto;
+}
+
+.form-add-doc label,
+.form-add-doc input,
+.form-add-doc select {
+  width: 100%;
+}
+
+.form-add-doc input,
+.form-add-doc select {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.form-add-doc button {
+  margin-top: 6%;
+  margin-bottom: 20%;
+  width: 100%;
+  border: 1px solid #cb2939;
+  outline: none;
+  padding: 10px;
+}
+
+// .form-add-doc input[type='submit']{
+//   margin-top: 6%;
+//   margin-bottom: 20%;
+// }
+
+.form-add-doc label {
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.submit-btn {
+  background: #cb2939;
+  border-radius: 10px;
+  color: white;
 }

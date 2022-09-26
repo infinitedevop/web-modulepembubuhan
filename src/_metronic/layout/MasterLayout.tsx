@@ -1,63 +1,41 @@
-import {useEffect} from 'react'
 import {Outlet} from 'react-router-dom'
-import {AsideDefault} from './components/aside/AsideDefault'
-import {Footer} from './components/Footer'
-import {HeaderWrapper} from './components/header/HeaderWrapper'
-import {Toolbar} from './components/toolbar/Toolbar'
-import {RightToolbar} from '../partials/layout/RightToolbar'
 import {ScrollTop} from './components/ScrollTop'
-import {Content} from './components/Content'
-import {PageDataProvider} from './core'
-import {useLocation} from 'react-router-dom'
-import {DrawerMessenger, ActivityDrawer, Main, InviteUsers, UpgradePlan} from '../partials'
-import {MenuComponent} from '../assets/ts/components'
+import Logo from '../assets/images/okoce.png'
+import {Footer} from './components/Footer'
+import { StepPembubuhan } from '../../app/pages/dashboard/_modals/StepPembubuhan'
+import PembubuhanProvider from '../../app/context/PembubuhanContext'
+import { KonfirmasiPembubuhan } from '../partials/modals/pembubuhan/KonfirmasiPembubuhan'
+import { PembubuhanBerhasil } from '../partials/modals/pembubuhan/PembubuhanBerhasil'
 
 const MasterLayout = () => {
-  const location = useLocation()
-  useEffect(() => {
-    setTimeout(() => {
-      MenuComponent.reinitialization()
-    }, 500)
-  }, [])
-
-  useEffect(() => {
-    setTimeout(() => {
-      MenuComponent.reinitialization()
-    }, 500)
-  }, [location.key])
+  var status : any;
+  status = 'user'
 
   return (
-    <PageDataProvider>
-      <div className='page d-flex flex-row flex-column-fluid'>
-        <AsideDefault />
-        <div className='wrapper d-flex flex-column flex-row-fluid' id='kt_wrapper'>
-          <HeaderWrapper />
-
-          <div id='kt_content' className='content d-flex flex-column flex-column-fluid'>
-            <Toolbar />
-            <div className='post d-flex flex-column-fluid' id='kt_post'>
-              <Content>
-                <Outlet />
-              </Content>
-            </div>
+    <PembubuhanProvider>
+      <div style={{background: 'white'}}>
+        {status !== 'internal' ? (
+          <div style={{width: '100%'}}>
+            <span className='title-internal'>MeteraiGo</span>
           </div>
-          <Footer />
+          ) : (
+          <img src={Logo} style={{margin: '1% 0 0 5%'}} width='100' />
+        )}
+        <h1 className={`title-pembubuhan ${ status !== 'internal' ? 'top-spacing' : null}`}>
+          Pembubuhan e-Meterai
+        </h1>
+        <div className='post d-flex flex-column-fluid' id='kt_post'>
+          {/* <Content> */}
+          <Outlet />
+          <StepPembubuhan />
+          <KonfirmasiPembubuhan />
+          <PembubuhanBerhasil />
+          {/* </Content> */}
         </div>
+        <Footer />
       </div>
-
-      {/* begin:: Drawers */}
-      <ActivityDrawer />
-      <RightToolbar />
-      <DrawerMessenger />
-      {/* end:: Drawers */}
-
-      {/* begin:: Modals */}
-      <Main />
-      <InviteUsers />
-      <UpgradePlan />
-      {/* end:: Modals */}
       <ScrollTop />
-    </PageDataProvider>
+    </PembubuhanProvider>
   )
 }
 

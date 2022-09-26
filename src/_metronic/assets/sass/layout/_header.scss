@@ -33,7 +33,7 @@
 
     // Aside default enabled, aside fixed & header sticky modes
     .aside-enabled.aside-fixed.header-fixed & {
-      left: get($aside-config, width);
+      // left: get($aside-config, width);
       transition: left get($aside-config, transition-speed) ease;
     }
 
