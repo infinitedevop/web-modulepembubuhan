@@ -6,6 +6,7 @@ import { StepPembubuhan } from '../../app/pages/dashboard/_modals/StepPembubuhan
 import PembubuhanProvider from '../../app/context/PembubuhanContext'
 import { KonfirmasiPembubuhan } from '../partials/modals/pembubuhan/KonfirmasiPembubuhan'
 import { PembubuhanBerhasil } from '../partials/modals/pembubuhan/PembubuhanBerhasil'
+import { Loading } from '../partials/modals/pembubuhan/Loading'
 
 const MasterLayout = () => {
   var status : any;
@@ -30,6 +31,7 @@ const MasterLayout = () => {
           <StepPembubuhan />
           <KonfirmasiPembubuhan />
           <PembubuhanBerhasil />
+          <Loading />
           {/* </Content> */}
         </div>
         <Footer />

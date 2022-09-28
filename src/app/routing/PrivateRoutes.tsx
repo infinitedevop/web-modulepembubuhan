@@ -23,9 +23,10 @@ const PrivateRoutes = () => {
         {/* Redirect to Dashboard after success login/registartion */}
         <Route path='auth/*' element={<Navigate to='/inputData' />} />
         {/* Pages */}
-        <Route path='inputData' element={<DashboardWrapper />} />
-        <Route path='addDokumen' element={<AddDokumen />} />
-        <Route path='reviewPdf' element={<ReviewPdf />} />
+        {/* <Route path='inputData' element={<DashboardWrapper />} /> */}
+        <Route path='inputData/serial_number=:serial_number' element={<DashboardWrapper />} />
+        <Route path='addDokumen/serial_number=:serial_number' element={<AddDokumen />} />
+        <Route path='reviewPdf/serial_number=:serial_number' element={<ReviewPdf />} />
         {/* Page Not Found */}
         <Route path='*' element={<Navigate to='/error/404' />} />
       </Route>

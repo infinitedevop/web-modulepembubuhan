@@ -3,8 +3,9 @@ import {useState, useContext} from 'react'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
 import {StepPembubuhan} from './_modals/StepPembubuhan'
 import PdfLogo from '../../../_metronic/assets/images/pdf-logo.png'
-import { UploadDokumen } from './UploadDokumen'
-import { Pembubuhan } from './Pembubuhan'
+import {UploadDokumen} from './UploadDokumen'
+import {Pembubuhan} from './Pembubuhan'
+import {useParams} from 'react-router-dom'
 
 export function AddDokumen() {
   const {modal, file} = useContext(PembubuhanContext)
@@ -16,12 +17,11 @@ export function AddDokumen() {
   }
 
   return (
-    <div className={`${file? 'upload-file2': 'upload-file'}`} style={{marginBottom: '10%', marginTop: '5%'}}>
-      {!file ?
-      <UploadDokumen />
-      :
-      <Pembubuhan />  
-    }
+    <div
+      className={`${file ? 'upload-file2' : 'upload-file'}`}
+      style={{marginBottom: '10%', marginTop: '5%'}}
+    >
+      {!file ? <UploadDokumen /> : <Pembubuhan />}
     </div>
   )
 }
