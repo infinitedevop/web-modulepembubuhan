@@ -4,12 +4,14 @@ import PdfLogo from '../../../_metronic/assets/images/pdf-logo.png'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
 
 export function UploadDokumen() {
-  const {file, setFile} = useContext(PembubuhanContext)
+  const {setFile, setCoord, coord, setLoading} = useContext(PembubuhanContext)
 
   const uploadKTPPreview = (e: any) => {
     if (e.currentTarget.files.length) {
       const data = e.currentTarget.files[0]
+      setCoord({...coord, ['file']: data})
       setFile(URL.createObjectURL(data))
+      setLoading(true)
     }
   }
 

@@ -10,7 +10,6 @@ const PembubuhanBerhasil = () => {
 
   const handleSukses = () => {
     setPembubuhanberhasilModal(false)
-    history('/reviewPdf')
   }
 
   return (
