@@ -1,16 +1,62 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {useState, useContext, useEffect, useRef} from 'react'
-import {PembubuhanContext} from '../../context/PembubuhanContext'
+import {useContext, useState} from 'react'
 import {Document, Page} from 'react-pdf/dist/entry.webpack'
 import NextIcon from '../../../_metronic/assets/images/next.png'
 import PrevIcon from '../../../_metronic/assets/images/prev.png'
 import PrevIconBold from '../../../_metronic/assets/images/prev-bold.png'
-import Example from '../../../_metronic/assets/files/Example.pdf'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import {useParams} from 'react-router-dom'
+import {PembubuhanContext} from '../../context/PembubuhanContext'
 
 export function ReviewPdf() {
-  const {file, setKonfirmasiPembubuhanModal} = useContext(PembubuhanContext)
+  const {loading, setLoading} = useContext(PembubuhanContext)
+  const [file, setFile] = useState()
 
-  const fabric = require('fabric').fabric
+  const API_URL = process.env.REACT_APP_API_URL_STAMP
+
+  let {serial_number} = useParams()
+
+  if (!file) {
+    axios
+      .get(`${API_URL}/api/stamp/` + serial_number + `/result`, {
+        responseType: 'blob',
+      })
+      .then((res) => {
+        setFile(res.data)
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal',
+          text: err.response.data.error,
+        })
+      })
+  }
+
+  const kirimEmail = () => {
+    setLoading(true)
+    axios
+      .post(`${API_URL}/api/stamp/` + serial_number + `/resend-email`)
+      .then((res) => {
+        setLoading(false)
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil',
+          text: res.data.data.message,
+        })
+      })
+      .catch((err) => {
+        setLoading(false)
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal',
+          text: err.response.data.error,
+        })
+      })
+  }
+
+  const downloadPdf = () => {}
 
   const [numPages, setNumPages] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
@@ -22,14 +68,6 @@ export function ReviewPdf() {
     setPageNumber((prevPageNumber) => prevPageNumber + offset)
   }
 
-  function firstPage() {
-    setPageNumber(1)
-  }
-
-  function lastPage() {
-    setPageNumber(numPages!)
-  }
-
   function previousPage() {
     changePage(-1)
   }
@@ -37,66 +75,6 @@ export function ReviewPdf() {
   function nextPage() {
     changePage(+1)
   }
-
-  const ref = useRef<HTMLDivElement>(null)
-  setTimeout(() => {
-    var canvas = new fabric.Canvas('canvasMeterai', {
-      preserveObjectStacking: true,
-    })
-    canvas.setDimensions({
-      width: ref.current?.clientWidth,
-      height: ref.current?.clientHeight,
-    })
-
-    var eMeterai = document.getElementById('meterai')
-
-    var imgMeterai = new fabric.Image(eMeterai, {
-      hasControls: false,
-      hasBorders: false,
-      scaleX: 0.9,
-      scaleY: 0.9,
-    })
-
-    canvas.add(imgMeterai)
-
-    canvas.on('object:moving', function (e: any) {
-      var obj = e.target
-      // console.log(obj.setCoords().aCoords.bl)
-
-      let llx = 'llx'
-      let lly = 'lly'
-      let x_coord = obj.setCoords().oCoords.bl.x
-      let y_coord = obj.setCoords().oCoords.bl.y
-      // console.log(obj.setCoords());
-
-      // setInputAjb({...inputAjb, [llx]: x_coord, [lly]: y_coord})
-      // console.log(x_coord + ' ' + y_coord)
-
-      if (obj.currentHeight > obj.canvas.height || obj.currentWidth > obj.canvas.width) {
-        return
-      }
-      obj.setCoords()
-      // top-left  corner
-      if (obj.getBoundingRect().top < 0 || obj.getBoundingRect().left < 0) {
-        obj.top = Math.max(obj.top, obj.top - obj.getBoundingRect().top)
-        obj.left = Math.max(obj.left, obj.left - obj.getBoundingRect().left)
-      }
-      // bot-right corner
-      if (
-        obj.getBoundingRect().top + obj.getBoundingRect().height > obj.canvas.height ||
-        obj.getBoundingRect().left + obj.getBoundingRect().width > obj.canvas.width
-      ) {
-        obj.top = Math.min(
-          obj.top,
-          obj.canvas.height - obj.getBoundingRect().height + obj.top - obj.getBoundingRect().top
-        )
-        obj.left = Math.min(
-          obj.left,
-          obj.canvas.width - obj.getBoundingRect().width + obj.left - obj.getBoundingRect().left
-        )
-      }
-    })
-  }, 3000)
 
   return (
     <div className='upload-file2' style={{marginBottom: '10%', marginTop: '5%'}}>
@@ -128,8 +106,8 @@ export function ReviewPdf() {
             </button>
           </div>
         ) : null}
-        <div ref={ref} id='pdf-wrapper'>
-          <Document file={Example} onLoadSuccess={onDocumentLoadSuccess}>
+        <div id='pdf-wrapper'>
+          <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
             <Page pageNumber={pageNumber} width={600} />
           </Document>
         </div>
@@ -139,8 +117,12 @@ export function ReviewPdf() {
           <b className='bold'>Unduh</b> File
         </label>
         <div className='preview-btn mt-7'>
-          <button className='btn-kirim'>Kirim Ulang Email</button>
-          <button className='btn-download'>Download</button>
+          <button className='btn-kirim' onClick={kirimEmail}>
+            Kirim Ulang Email
+          </button>
+          <button className='btn-download' onClick={downloadPdf}>
+            Download
+          </button>
         </div>
       </span>
     </div>
