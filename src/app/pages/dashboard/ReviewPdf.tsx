@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {useContext, useState} from 'react'
-import {Document, Page} from 'react-pdf/dist/entry.webpack'
+// import {Document, Page} from 'react-pdf/dist/entry.webpack'
+import {Document, Page} from 'react-pdf/dist/esm/entry.webpack'
 import NextIcon from '../../../_metronic/assets/images/next.png'
 import PrevIcon from '../../../_metronic/assets/images/prev.png'
 import PrevIconBold from '../../../_metronic/assets/images/prev-bold.png'
@@ -10,7 +11,7 @@ import {useParams} from 'react-router-dom'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
 
 export function ReviewPdf() {
-  const {loading, setLoading} = useContext(PembubuhanContext)
+  const {setLoading} = useContext(PembubuhanContext)
   const [file, setFile] = useState()
 
   const API_URL = process.env.REACT_APP_API_URL_STAMP
@@ -25,11 +26,13 @@ export function ReviewPdf() {
       .then((res) => {
         setFile(res.data)
       })
-      .catch((err) => {
+      .catch(async (err) => {
+        let error = JSON.parse(await err.response.data.text())
         Swal.fire({
           icon: 'error',
           title: 'Gagal',
-          text: err.response.data.error,
+          text: error.error,
+          allowOutsideClick: false,
         })
       })
   }

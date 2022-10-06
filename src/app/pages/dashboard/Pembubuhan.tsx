@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {useState, useContext, useEffect, useRef} from 'react'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
-import {Document, Page} from 'react-pdf/dist/entry.webpack'
-import NextIcon from '../../../_metronic/assets/images/next.png'
+// import {Document, Page} from 'react-pdf/dist/entry.webpack'
+import {Document, Page} from 'react-pdf/dist/esm/entry.webpack'
+import NextIcon from '../../../_metronic/assets/images/light-next.png'
+import NextIconBold from '../../../_metronic/assets/images/next.png'
 import PrevIcon from '../../../_metronic/assets/images/prev.png'
 import PrevIconBold from '../../../_metronic/assets/images/prev-bold.png'
 import MeteraiImg from '../../../_metronic/assets/images/meterai.png'
@@ -47,7 +49,6 @@ export function Pembubuhan() {
     })
 
     const heightPdf = ref.current?.clientWidth
-    console.log(heightPdf)
 
     var eMeterai = document.getElementById('meterai')
 
@@ -64,13 +65,9 @@ export function Pembubuhan() {
       var obj = e.target
 
       let lower_x_coord = obj.setCoords().oCoords.bl.x
-      let lower_y_coord = heightPdf
-        ? heightPdf - obj.setCoords().oCoords.bl.y
-        : obj.setCoords().oCoords.bl.y
+      let lower_y_coord = canvas.getHeight() - obj.setCoords().oCoords.bl.y
       let upper_x_coord = obj.setCoords().oCoords.tr.x
-      let upper_y_coord = heightPdf
-        ? heightPdf - obj.setCoords().oCoords.tr.y
-        : obj.setCoords().oCoords.tr.y
+      let upper_y_coord = canvas.getHeight() - obj.setCoords().oCoords.tr.y
 
       setCoord({
         ...coord,
@@ -105,7 +102,7 @@ export function Pembubuhan() {
         )
       }
     })
-  }, 3000)
+  }, 5000)
 
   const handlePembubuhan = () => {
     setKonfirmasiPembubuhanModal(true)
@@ -146,7 +143,11 @@ export function Pembubuhan() {
               onClick={nextPage}
               className={`pagination-pdf fw-bold`}
             >
-              Selanjutnya <img src={NextIcon} style={{paddingLeft: '8px'}} />
+              Selanjutnya{' '}
+              <img
+                src={pageNumber === numPages ? NextIcon : NextIconBold}
+                style={{paddingLeft: '8px'}}
+              />
             </button>
           </div>
         ) : null}

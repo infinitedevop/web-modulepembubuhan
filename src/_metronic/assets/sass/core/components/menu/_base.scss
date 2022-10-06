@@ -407,6 +407,15 @@
   margin: 0 auto;
 }
 
+// input[type="date"]{
+//   text-align: right;
+// }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: block;
+  background: url('../../../../images/calender.png') no-repeat;
+}
+
 .form-add-doc {
   margin: 0 auto;
 }

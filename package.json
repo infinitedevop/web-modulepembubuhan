@@ -38,7 +38,7 @@
     "react-inlinesvg": "^2.3.0",
     "react-intl": "^5.20.4",
     "react-is": "^17.0.2",
-    "react-pdf": "^4.2.0",
+    "react-pdf": "^5.5.0",
     "react-query": "^3.34.12",
     "react-router-dom": "6.2.1",
     "react-scripts": "4.0.3",

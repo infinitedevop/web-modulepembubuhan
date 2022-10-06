@@ -20,6 +20,9 @@ export function DashboardWrapper() {
     axios
       .get(`${API_URL}/api/stamp/get-document-info/` + serial_number)
       .then((res) => {
+        // console.log(res.data.data.document_info)
+        setDataDokumen(res.data.data.document_info)
+        setDataDokumen({...dataDokumen, ['email']: res.data.data.email})
         getListDokumen()
       })
       .catch((err) => {
@@ -107,7 +110,6 @@ export function DashboardWrapper() {
           value={dataDokumen.doc_num}
           placeholder='Masukkan Nomor Dokumen'
           onChange={handleChange}
-          required
         />
 
         <label>Tipe Dokumen</label>
