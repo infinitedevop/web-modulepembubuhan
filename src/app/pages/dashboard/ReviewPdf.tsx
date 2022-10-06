@@ -4,10 +4,11 @@ import {useContext, useState} from 'react'
 import {Document, Page} from 'react-pdf/dist/esm/entry.webpack'
 import NextIcon from '../../../_metronic/assets/images/next.png'
 import PrevIcon from '../../../_metronic/assets/images/prev.png'
+import Danger from '../../../_metronic/assets/images/danger.png'
 import PrevIconBold from '../../../_metronic/assets/images/prev-bold.png'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
 
 export function ReviewPdf() {
@@ -59,7 +60,16 @@ export function ReviewPdf() {
       })
   }
 
-  const downloadPdf = () => {}
+  const downloadPdf = () => {
+    let url = window.URL.createObjectURL(file!)
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = file!
+
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   const [numPages, setNumPages] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
@@ -119,14 +129,19 @@ export function ReviewPdf() {
           email Anda bisa klik tombol <b>kirim ulang email</b>, atau Anda bisa langsung{' '}
           <b className='bold'>Unduh</b> File
         </label>
-        <div className='preview-btn mt-7'>
+        <div className='preview-btn mt-7 mb-5'>
           <button className='btn-kirim' onClick={kirimEmail}>
             Kirim Ulang Email
           </button>
+          {/* <Link to={file ? file : 'sdfsdf'} className='btn-download text-center' download>Download</Link> */}
           <button className='btn-download' onClick={downloadPdf}>
             Download
           </button>
         </div>
+        <span className='pembubuhan-warning'>
+          <img src={Danger} width={15} style={{marginRight: '5px'}} />
+          Dokumen hanya bisa dikirim ulang email atau didownload selama satu hari setelah pembubuhan
+        </span>
       </span>
     </div>
   )
