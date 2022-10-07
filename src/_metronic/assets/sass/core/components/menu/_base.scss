@@ -102,7 +102,7 @@
   background: #d9d9d9;
 }
 
-.pembubuhan-warning{
+.pembubuhan-warning {
   font-size: 11px;
 }
 
@@ -124,6 +124,17 @@
   padding: 1.5% 0;
   font-weight: 500;
   width: 45%;
+}
+
+.disabledbtn {
+  background: #D9D9D9;
+  border: 1px solid #707070;
+  border-radius: 5px;
+  color: #707070;
+  padding: 1.5% 0;
+  font-weight: 500;
+  width: 45%;
+  cursor: not-allowed;
 }
 
 // Menu item
@@ -415,7 +426,7 @@
 //   text-align: right;
 // }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+input[type='date']::-webkit-calendar-picker-indicator {
   display: block;
   background: url('../../../../images/calender.png') no-repeat;
 }

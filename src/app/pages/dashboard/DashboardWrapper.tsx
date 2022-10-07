@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
-import {Link, useNavigate, useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
 import Swal from 'sweetalert2'
 
 export function DashboardWrapper() {
-  const {loading, setLoading} = useContext(PembubuhanContext)
+  const {setLoading} = useContext(PembubuhanContext)
   const [listData, setListData] = useState<string[] | any>([])
   const [dataDokumen, setDataDokumen] = useState<string[] | any>([])
 
@@ -22,7 +22,7 @@ export function DashboardWrapper() {
       .then((res) => {
         // console.log(res.data.data.document_info)
         setDataDokumen(res.data.data.document_info)
-        setDataDokumen({...dataDokumen, ['email']: res.data.data.email})
+        setDataDokumen({...dataDokumen, email: res.data.data.email})
         getListDokumen()
       })
       .catch((err) => {
@@ -30,6 +30,7 @@ export function DashboardWrapper() {
           getListDokumen()
         }
       })
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const getListDokumen = () => {
@@ -62,7 +63,7 @@ export function DashboardWrapper() {
     axios
       .post(`${API_URL}/api/stamp/store-document-info`, bodyParameters, config)
       .then((res) => {
-        histori('/addDokumen/serial_number='+serial_number)
+        histori('/addDokumen/serial_number=' + serial_number)
         setLoading(false)
       })
       .catch((err) => {

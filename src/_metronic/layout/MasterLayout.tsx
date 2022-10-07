@@ -20,7 +20,7 @@ const MasterLayout = () => {
             <span className='title-internal'>MeteraiGo</span>
           </div>
           ) : (
-          <img src={Logo} style={{margin: '1% 0 0 5%'}} width='100' />
+          <img src={Logo} style={{margin: '1% 0 0 5%'}} width='100' alt='logo' />
         )}
         <h1 className={`title-pembubuhan ${ status !== 'internal' ? 'top-spacing' : null}`}>
           Pembubuhan e-Meterai

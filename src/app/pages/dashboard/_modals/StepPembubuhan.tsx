@@ -1,4 +1,4 @@
-import {useContext, useEffect} from 'react'
+import {useContext} from 'react'
 // import Success from '../../../assets/images/success-icon.png'
 import {PembubuhanContext} from '../../../context/PembubuhanContext'
 import IconSatu from '../../../../_metronic/assets/images/satu.png'
@@ -85,6 +85,7 @@ const StepPembubuhan = () => {
                             margin: '0 auto',
                             marginTop: '-15%',
                           }}
+                          alt='icon'
                         />
                         <span style={{marginTop: '10px', fontWeight: 'bold'}}>{el.title}</span>
                         <span style={{fontSize: '10px', marginTop: '8px'}}>{el.text}</span>

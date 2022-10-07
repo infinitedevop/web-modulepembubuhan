@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {useState, useContext} from 'react'
+import {useContext} from 'react'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
 import {StepPembubuhan} from './_modals/StepPembubuhan'
-import PdfLogo from '../../../_metronic/assets/images/pdf-logo.png'
 import {UploadDokumen} from './UploadDokumen'
 import {Pembubuhan} from './Pembubuhan'
-import {useParams} from 'react-router-dom'
 
 export function AddDokumen() {
   const {modal, file} = useContext(PembubuhanContext)

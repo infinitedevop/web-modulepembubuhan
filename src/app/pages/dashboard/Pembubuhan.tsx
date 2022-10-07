@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {useState, useContext, useEffect, useRef} from 'react'
+import {useState, useContext, useRef} from 'react'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
 // import {Document, Page} from 'react-pdf/dist/entry.webpack'
 import {Document, Page} from 'react-pdf/dist/esm/entry.webpack'
@@ -48,8 +48,6 @@ export function Pembubuhan() {
       height: ref.current?.clientHeight,
     })
 
-    const heightPdf = ref.current?.clientWidth
-
     var eMeterai = document.getElementById('meterai')
 
     var imgMeterai = new fabric.Image(eMeterai, {
@@ -68,14 +66,15 @@ export function Pembubuhan() {
       let lower_y_coord = canvas.getHeight() - obj.setCoords().oCoords.bl.y
       let upper_x_coord = obj.setCoords().oCoords.tr.x
       let upper_y_coord = canvas.getHeight() - obj.setCoords().oCoords.tr.y
+      
 
       setCoord({
         ...coord,
-        ['llx']: lower_x_coord,
-        ['lly']: lower_y_coord,
-        ['urx']: upper_x_coord,
-        ['ury']: upper_y_coord,
-        ['serial_number']: serial_number,
+        llx: lower_x_coord,
+        lly: lower_y_coord,
+        urx: upper_x_coord,
+        ury: upper_y_coord,
+        serial_number: serial_number,
       })
 
       if (obj.currentHeight > obj.canvas.height || obj.currentWidth > obj.canvas.width) {
@@ -112,7 +111,7 @@ export function Pembubuhan() {
   if (coord[pages as keyof typeof coord] !== pageNumber) {
     setCoord({
       ...coord,
-      ['pages']: pageNumber,
+      pages: pageNumber,
     })
   }
 
@@ -131,7 +130,7 @@ export function Pembubuhan() {
               onClick={previousPage}
               className={`pagination-pdf fw-bold`}
             >
-              <img src={pageNumber === 1 ? PrevIcon : PrevIconBold} style={{paddingRight: '8px'}} />
+              <img src={pageNumber === 1 ? PrevIcon : PrevIconBold} style={{paddingRight: '8px'}} alt='prev-icon' />
               Sebelumnya
             </button>
             <p className='font-semibold'>
@@ -147,6 +146,7 @@ export function Pembubuhan() {
               <img
                 src={pageNumber === numPages ? NextIcon : NextIconBold}
                 style={{paddingLeft: '8px'}}
+                alt='next-icon'
               />
             </button>
           </div>

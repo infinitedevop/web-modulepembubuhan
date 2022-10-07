@@ -1,12 +1,9 @@
 import {useContext} from 'react'
-import { useNavigate } from 'react-router-dom'
 import {PembubuhanContext} from '../../../../app/context/PembubuhanContext'
 import Check from '../../../assets/images/check.png'
 
 const PembubuhanBerhasil = () => {
   const {pembubuhanberhasilModal, setPembubuhanberhasilModal} = useContext(PembubuhanContext)
-
-  const history = useNavigate()
 
   const handleSukses = () => {
     setPembubuhanberhasilModal(false)
@@ -30,7 +27,7 @@ const PembubuhanBerhasil = () => {
             >
               {/* begin::Modal content */}
               <div className='modal-content' style={{padding: '23px'}}>
-                <img src={Check} width='20%' style={{margin: '0 auto'}} />
+                <img src={Check} width='20%' style={{margin: '0 auto'}} alt='check-icon' />
                 {/* end::Modal body */}
                 <h3 className='modal-title fs-1 mb-2 mt-3'>Pembubuhan Berhasil</h3>
                 <span style={{fontSize: '12px'}} className='text-dark'>

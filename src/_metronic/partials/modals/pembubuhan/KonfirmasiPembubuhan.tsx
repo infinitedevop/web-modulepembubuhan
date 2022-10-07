@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react'
+import {useContext} from 'react'
 import {PembubuhanContext} from '../../../../app/context/PembubuhanContext'
 import Danger from '../../../assets/images/danger.png'
 import axios from 'axios'
@@ -10,7 +10,6 @@ const KonfirmasiPembubuhan = () => {
     konfirmasiPembubuhanModal,
     setKonfirmasiPembubuhanModal,
     setPembubuhanberhasilModal,
-    loading,
     setLoading,
     coord,
     setFile,
@@ -83,7 +82,7 @@ const KonfirmasiPembubuhan = () => {
             >
               {/* begin::Modal content */}
               <div className='modal-content' style={{padding: '22px'}}>
-                <img src={Danger} width='20%' style={{margin: '0 auto'}} />
+                <img src={Danger} width='20%' style={{margin: '0 auto'}} alt='danger-icon'/>
                 {/* end::Modal body */}
                 <h3 className='modal-title fs-1 mb-2'>Pembubuhan Meterai Elektronik</h3>
                 <span style={{fontSize: '12px'}}>
