@@ -20,17 +20,19 @@ export function DashboardWrapper() {
     axios
       .get(`${API_URL}/api/stamp/get-document-info/` + serial_number)
       .then((res) => {
-        // console.log(res.data.data.document_info)
         setDataDokumen(res.data.data.document_info)
         setDataDokumen({...dataDokumen, email: res.data.data.email})
         getListDokumen()
       })
       .catch((err) => {
+        console.log(err.response.data.data.sn_data)
         if (err.response.error !== 'Serial Number tidak valid') {
           getListDokumen()
+
+          setDataDokumen({email: err.response.data.data.sn_data.user_email})
         }
       })
-       // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const getListDokumen = () => {
@@ -72,6 +74,7 @@ export function DashboardWrapper() {
           title: 'Gagal',
           text: err.response.data.error,
         })
+        setLoading(false)
       })
   }
 
@@ -82,6 +85,11 @@ export function DashboardWrapper() {
     setDataDokumen({...dataDokumen, [name]: value})
   }
 
+  const date = new Date()
+  const futureDate = date.getDate()
+  date.setDate(futureDate)
+  const defaultValue = date.toLocaleDateString('en-CA')
+
   return (
     <div className='mt-6 add-doc'>
       <form className='form-add-doc'>
@@ -91,6 +99,7 @@ export function DashboardWrapper() {
           name='doc_date'
           value={dataDokumen.doc_date}
           onChange={handleChange}
+          defaultValue={defaultValue}
           required
         />
 
@@ -101,6 +110,7 @@ export function DashboardWrapper() {
           value={dataDokumen.email}
           placeholder='example@gmail.com'
           onChange={handleChange}
+          defaultValue=''
           required
         />
 

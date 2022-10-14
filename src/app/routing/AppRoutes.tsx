@@ -20,24 +20,24 @@ import {App} from '../App'
 const {PUBLIC_URL} = process.env
 
 const AppRoutes: FC = () => {
-  const {currentUser} = useAuth()
+  // const {currentUser} = useAuth()
   return (
     <BrowserRouter basename={PUBLIC_URL}>
       <Routes>
         <Route element={<App />}>
           <Route path='error/*' element={<ErrorsPage />} />
           <Route path='logout' element={<Logout />} />
-          {currentUser ? (
+          {/* {currentUser ? (
             <>
               <Route path='/*' element={<PrivateRoutes />} />
               <Route index element={<Navigate to='/inputData' />} />
             </>
           ) : (
-            <>
-              <Route path='auth/*' element={<AuthPage />} />
-              <Route path='*' element={<Navigate to='/auth' />} />
-            </>
-          )}
+            <> */}
+          <Route path='/*' element={<PrivateRoutes />} />
+          <Route index element={<Navigate to='/inputData' />} />
+          {/* </>
+          )} */}
         </Route>
       </Routes>
     </BrowserRouter>
