@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {useState, useContext, useRef} from 'react'
+import {useState, useContext, useRef, useEffect} from 'react'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
 // import {Document, Page} from 'react-pdf/dist/entry.webpack'
 import {Document, Page} from 'react-pdf/dist/esm/entry.webpack'
@@ -37,9 +37,11 @@ export function Pembubuhan() {
     changePage(+1)
   }
 
+  
   const ref = useRef<HTMLDivElement>(null)
-  setTimeout(() => {
-    setLoading(false)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
     var canvas = new fabric.Canvas('canvasMeterai', {
       preserveObjectStacking: true,
     })
@@ -51,22 +53,23 @@ export function Pembubuhan() {
     var eMeterai = document.getElementById('meterai')
 
     var imgMeterai = new fabric.Image(eMeterai, {
+      preserveObjectStacking: true,
       hasControls: false,
       hasBorders: false,
-      scaleX: 0.9,
-      scaleY: 0.9,
+      scaleX: 0.88,
+      scaleY: 0.88,
     })
 
     canvas.add(imgMeterai)
-
+    
     canvas.on('object:moving', function (e: any) {
       var obj = e.target
+      canvas.add(imgMeterai)
 
       let lower_x_coord = obj.setCoords().oCoords.bl.x
       let lower_y_coord = canvas.getHeight() - obj.setCoords().oCoords.bl.y
       let upper_x_coord = obj.setCoords().oCoords.tr.x
       let upper_y_coord = canvas.getHeight() - obj.setCoords().oCoords.tr.y
-      
 
       setCoord({
         ...coord,
@@ -101,7 +104,9 @@ export function Pembubuhan() {
         )
       }
     })
-  }, 5000)
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handlePembubuhan = () => {
     setKonfirmasiPembubuhanModal(true)
@@ -119,6 +124,7 @@ export function Pembubuhan() {
     <>
       {loading ? <Loading /> : null}
       <span className='flex' style={{background: '#D9D9D9'}}>
+        <div>
         {numPages! > 1 ? (
           <div
             className='pdf-pagination mb-3'
@@ -130,7 +136,11 @@ export function Pembubuhan() {
               onClick={previousPage}
               className={`pagination-pdf fw-bold`}
             >
-              <img src={pageNumber === 1 ? PrevIcon : PrevIconBold} style={{paddingRight: '8px'}} alt='prev-icon' />
+              <img
+                src={pageNumber === 1 ? PrevIcon : PrevIconBold}
+                style={{paddingRight: '8px'}}
+                alt='prev-icon'
+              />
               Sebelumnya
             </button>
             <p className='font-semibold'>
@@ -170,6 +180,7 @@ export function Pembubuhan() {
         <button className='btn-bubuhkan mt-5' onClick={handlePembubuhan}>
           Bubuhkan Meterai Elektronik
         </button>
+      </div>
       </span>
     </>
   )

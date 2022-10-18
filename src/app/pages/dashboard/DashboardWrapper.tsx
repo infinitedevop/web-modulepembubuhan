@@ -6,7 +6,7 @@ import {PembubuhanContext} from '../../context/PembubuhanContext'
 import Swal from 'sweetalert2'
 
 export function DashboardWrapper() {
-  const {setLoading} = useContext(PembubuhanContext)
+  const {setLoading, setModal} = useContext(PembubuhanContext)
   const [listData, setListData] = useState<string[] | any>([])
   const [dataDokumen, setDataDokumen] = useState<string[] | any>([])
 
@@ -67,6 +67,7 @@ export function DashboardWrapper() {
       .then((res) => {
         histori('/addDokumen/serial_number=' + serial_number)
         setLoading(false)
+        setModal(true)
       })
       .catch((err) => {
         Swal.fire({
@@ -125,8 +126,8 @@ export function DashboardWrapper() {
 
         <label>Tipe Dokumen</label>
         <select name='doc_type' onChange={handleChange} required>
-          <option disabled selected>
-            Pilih Tipe Dokumen
+          <option value={'Dokumen lain-lain'} disabled selected>
+            Dokumen lain-lain
           </option>
           {listData.map((el: any, index: any) => {
             return (
@@ -137,11 +138,8 @@ export function DashboardWrapper() {
           })}
         </select>
 
-        {/* <input type='submit' value='Lanjutkan' className='submit-btn' /> */}
         <button className='submit-btn' onClick={postData}>
-          {/* <Link to='/addDokumen' className='text-white' style={{textDecoration: 'none'}}> */}
           Lanjutkan
-          {/* </Link> */}
         </button>
       </form>
     </div>

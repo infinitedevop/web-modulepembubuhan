@@ -17,7 +17,7 @@ const MasterLayout = () => {
       <div style={{background: 'white'}}>
         {status !== 'internal' ? (
           <div style={{width: '100%'}}>
-            <span className='title-internal'>MeteraiGo</span>
+            <span className='title-internal'>DiMeterai</span>
           </div>
           ) : (
           <img src={Logo} style={{margin: '1% 0 0 5%'}} width='100' alt='logo' />

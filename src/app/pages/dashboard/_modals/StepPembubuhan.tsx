@@ -27,10 +27,10 @@ const StepPembubuhan = () => {
       text: 'Donwload kembali file Anda. Kini dokumen Anda telah sukses dibubuhkan dengan e-meterai!',
     },
   ]
-
+  
   return (
     <>
-      {modal && window.location.pathname === '/demo1/addDokumen' ? (
+      {modal ? (
         <>
           <div
             className='modal fade show d-block'
