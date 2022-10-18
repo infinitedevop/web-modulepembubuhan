@@ -6,7 +6,7 @@ import {PembubuhanContext} from '../../context/PembubuhanContext'
 import Swal from 'sweetalert2'
 
 export function DashboardWrapper() {
-  const {setLoading} = useContext(PembubuhanContext)
+  const {setLoading, setModal} = useContext(PembubuhanContext)
   const [listData, setListData] = useState<string[] | any>([])
   const [dataDokumen, setDataDokumen] = useState<string[] | any>([])
 
@@ -67,6 +67,7 @@ export function DashboardWrapper() {
       .then((res) => {
         histori('/addDokumen/serial_number=' + serial_number)
         setLoading(false)
+        setModal(true)
       })
       .catch((err) => {
         Swal.fire({
