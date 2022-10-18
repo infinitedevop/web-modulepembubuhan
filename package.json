@@ -2,7 +2,7 @@
   "name": "stamp",
   "version": "8.0.38",
   "private": true,
-  "homepage": "https://stamp.infinids.id",
+  "homepage": "https://stamp.infinids.id/",
   "dependencies": {
     "@formatjs/intl-pluralrules": "^4.0.28",
     "@formatjs/intl-relativetimeformat": "^9.1.7",

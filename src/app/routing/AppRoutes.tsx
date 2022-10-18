@@ -11,7 +11,7 @@ import {PrivateRoutes} from './PrivateRoutes'
 import {ErrorsPage} from '../modules/errors/ErrorsPage'
 import {Logout, AuthPage, useAuth} from '../modules/auth'
 import {App} from '../App'
-import { MasterLayout } from '../../_metronic/layout/MasterLayout'
+import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 
 /**
  * Base URL of the website.
@@ -21,24 +21,26 @@ import { MasterLayout } from '../../_metronic/layout/MasterLayout'
 const {PUBLIC_URL} = process.env
 
 const AppRoutes: FC = () => {
-  const {currentUser} = useAuth()
+  // const {currentUser} = useAuth()
   return (
     <BrowserRouter basename={PUBLIC_URL}>
       <Routes>
         <Route element={<App />}>
           <Route path='error/*' element={<ErrorsPage />} />
           <Route path='logout' element={<Logout />} />
-          {currentUser ? (
+          <Route index element={<Navigate to='/inputData' />} />
+          <Route path='/*' element={<PrivateRoutes />} />
+          {/* {currentUser ? (
             <>
               <Route path='/*' element={<PrivateRoutes />} />
               <Route index element={<Navigate to='/inputData' />} />
             </>
           ) : (
             <>
-          <Route path='/*' element={<PrivateRoutes />} />
-          <Route index element={<Navigate to='/inputData' />} />
-          </>
-          )}
+              <Route path='auth/*' element={<AuthPage />} />
+              <Route index element={<Navigate to='/auth' />} />
+            </>
+          )} */}
         </Route>
       </Routes>
     </BrowserRouter>
