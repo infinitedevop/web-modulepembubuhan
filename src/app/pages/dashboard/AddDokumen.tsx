@@ -6,12 +6,7 @@ import {UploadDokumen} from './UploadDokumen'
 import {Pembubuhan} from './Pembubuhan'
 
 export function AddDokumen() {
-  const {modal, file, setModal} = useContext(PembubuhanContext)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setModal(true), 500)
-    return () => clearTimeout(timer)
-  })
+  const {modal, file} = useContext(PembubuhanContext)
 
   return (
     <div

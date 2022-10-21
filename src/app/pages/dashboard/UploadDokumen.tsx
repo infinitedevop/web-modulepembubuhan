@@ -29,7 +29,7 @@ export function UploadDokumen() {
               <p className='text-center text-sm mt-7 font-600' style={{lineHeight: '1px'}}>
                 Klik untuk mengunggah atau Seret file PDF Anda disini
               </p>
-              <span className='keterangan'>Ukuran dokumen yang direkomendasikan adalah a4</span>
+              <span className='keterangan'>Ukuran dokumen yang direkomendasikan adalah A4</span>
             </label>
             <input
               type='file'
