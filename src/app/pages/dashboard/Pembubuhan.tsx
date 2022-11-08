@@ -191,18 +191,13 @@ export function Pembubuhan() {
             Bubuhkan Meterai Elektronik
           </button>
           <input
-              type='file'
-              id='upload-button2'
-              style={{display: 'none'}}
-              onChange={handleGantiDokumen}
-              name='dokumen'
-              className='btn-ganti-dok mt-5'
-              // value='Ganti Dokumen'
-              // required={true}
-            />
-          {/* <button className='btn-ganti-dok mt-5' onClick={handleGantiDokumen}>
-            Ganti Dokumen
-          </button> */}
+            type='file'
+            id='upload-button2'
+            onChange={handleGantiDokumen}
+            name='dokumen'
+            hidden
+          />
+          <label htmlFor='upload-button2' className='btn-ganti-dok mt-5 text-center'>Ganti Dokumen</label>
         </div>
       </span>
     </>
