@@ -7,6 +7,12 @@
   display: flex;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
 // Menu & wrapper
 .menu,
 .menu-wrapper {
@@ -62,7 +68,7 @@
   background: #d9d9d9;
   width: 54.5%;
   border-radius: 20px;
-  padding: 4% 5%;
+  // padding: 4% 5%;
   margin: 0 auto;
 }
 

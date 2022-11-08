@@ -129,48 +129,68 @@ export function Pembubuhan() {
     })
   }
 
+  const handleChange = (e: any) => {
+    let data = e.target.value
+
+    if (data === '') {
+      setPageNumber(1)
+    } else if (data > numPages!) {
+      setPageNumber(numPages!)
+    } else {
+      setPageNumber(Number(data))
+    }
+  }
+
   return (
     <>
       {loading ? <Loading /> : null}
-      <span className='flex' style={{background: '#D9D9D9'}}>
+      <span className='flex mx-auto' style={{background: '#D9D9D9'}}>
         <div>
-          {numPages! > 1 ? (
-            <div
-              className='pdf-pagination mb-3'
-              style={{display: 'flex', justifyContent: 'space-between'}}
+          <div
+            className='pdf-pagination mb-1 mt-10'
+            style={{display: 'flex', justifyContent: 'space-between', padding: '0 5rem '}}
+          >
+            <button
+              type='button'
+              disabled={pageNumber <= 1}
+              onClick={previousPage}
+              className={`pagination-pdf fw-bold`}
             >
-              <button
-                type='button'
-                disabled={pageNumber <= 1}
-                onClick={previousPage}
-                className={`pagination-pdf fw-bold`}
-              >
-                <img
-                  src={pageNumber === 1 ? PrevIcon : PrevIconBold}
-                  style={{paddingRight: '8px'}}
-                  alt='prev-icon'
-                />
-                Sebelumnya
-              </button>
-              <p className='font-semibold'>
-                {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}
-              </p>
-              <button
-                type='button'
-                disabled={pageNumber >= numPages!}
-                onClick={nextPage}
-                className={`pagination-pdf fw-bold`}
-              >
-                Selanjutnya{' '}
-                <img
-                  src={pageNumber === numPages ? NextIcon : NextIconBold}
-                  style={{paddingLeft: '8px'}}
-                  alt='next-icon'
-                />
-              </button>
-            </div>
-          ) : null}
-          <div ref={ref} id='pdf-wrapper mx-auto' style={{width: 'fit-content', margin : '0 auto'}}>
+              <img
+                src={pageNumber === 1 ? PrevIcon : PrevIconBold}
+                style={{paddingRight: '8px'}}
+                alt='prev-icon'
+              />
+              Sebelumnya
+            </button>
+            <p className='font-semibold'>
+              <input
+                type='text'
+                value={pageNumber}
+                style={{width: '30px'}}
+                onChange={handleChange}
+              />{' '}
+              of {numPages || '--'}
+            </p>
+            <button
+              type='button'
+              disabled={pageNumber >= numPages!}
+              onClick={nextPage}
+              className={`pagination-pdf fw-bold`}
+            >
+              Selanjutnya{' '}
+              <img
+                src={pageNumber === numPages ? NextIcon : NextIconBold}
+                style={{paddingRight: '8px'}}
+                alt='next-icon'
+              />
+            </button>
+          </div>
+          <div
+            ref={ref}
+            id='pdf-wrapper'
+            style={{width: 'fit-content', margin: '0 auto', marginTop: '1rem'}}
+          >
             <div className='canvas-wrapper' style={{position: 'absolute'}}>
               <canvas id='canvasMeterai' className='z-2' style={{zIndex: '2'}}>
                 <img
@@ -186,19 +206,22 @@ export function Pembubuhan() {
               <Page pageNumber={pageNumber} width={600} />
             </Document>
           </div>
-          <button className='btn-bubuhkan mt-5' onClick={handlePembubuhan}>
-            Bubuhkan Meterai Elektronik
-          </button>
-          <input
-            type='file'
-            id='upload-button2'
-            onChange={handleGantiDokumen}
-            name='dokumen'
-            hidden
-          />
-          <label htmlFor='upload-button2' className='btn-ganti-dok mt-5 text-center'>
-            Ganti Dokumen
-          </label>
+          <div className='mt-5' style={{padding: '0 5rem '}}>
+            <button className='btn-bubuhkan mt-5' onClick={handlePembubuhan}>
+              Bubuhkan Meterai Elektronik
+            </button>
+
+            <input
+              type='file'
+              id='upload-button2'
+              onChange={handleGantiDokumen}
+              name='dokumen'
+              hidden
+            />
+            <label htmlFor='upload-button2' className='btn-ganti-dok mt-5 text-center mb-15'>
+              Ganti Dokumen
+            </label>
+          </div>
         </div>
       </span>
     </>
