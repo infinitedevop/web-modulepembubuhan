@@ -117,7 +117,6 @@ export function Pembubuhan() {
       let name = 'file'
       setCoord({...coord, [name]: data})
       setFile(URL.createObjectURL(data))
-      setLoading(true)
     }
   }
 
@@ -171,7 +170,7 @@ export function Pembubuhan() {
               </button>
             </div>
           ) : null}
-          <div ref={ref} id='pdf-wrapper'>
+          <div ref={ref} id='pdf-wrapper mx-auto' style={{width: 'fit-content', margin : '0 auto'}}>
             <div className='canvas-wrapper' style={{position: 'absolute'}}>
               <canvas id='canvasMeterai' className='z-2' style={{zIndex: '2'}}>
                 <img
@@ -197,7 +196,9 @@ export function Pembubuhan() {
             name='dokumen'
             hidden
           />
-          <label htmlFor='upload-button2' className='btn-ganti-dok mt-5 text-center'>Ganti Dokumen</label>
+          <label htmlFor='upload-button2' className='btn-ganti-dok mt-5 text-center'>
+            Ganti Dokumen
+          </label>
         </div>
       </span>
     </>

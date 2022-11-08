@@ -149,7 +149,7 @@ export function ReviewPdf() {
             </button>
           </div>
         ) : null}
-        <div id='pdf-wrapper'>
+       <div id='pdf-wrapper mx-auto' style={{width: 'fit-content', margin : '0 auto'}}>
           <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
             <Page pageNumber={pageNumber} width={600} />
           </Document>
