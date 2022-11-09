@@ -10,6 +10,7 @@ import PrevIconBold from '../../../_metronic/assets/images/prev-bold.png'
 import MeteraiImg from '../../../_metronic/assets/images/meterai.png'
 import {useParams} from 'react-router-dom'
 import {Loading} from '../../../_metronic/partials/modals/pembubuhan/Loading'
+import Swal from 'sweetalert2'
 
 export function Pembubuhan() {
   const {file, setFile, setKonfirmasiPembubuhanModal, coord, setCoord, setLoading, loading} =
@@ -112,11 +113,21 @@ export function Pembubuhan() {
   }
 
   const handleGantiDokumen = (e: any) => {
+    setLoading(true)
     if (e.currentTarget.files.length) {
       const data = e.currentTarget.files[0]
-      let name = 'file'
-      setCoord({...coord, [name]: data})
-      setFile(URL.createObjectURL(data))
+      if (data.type === 'application/pdf') {
+        let name = 'file'
+        setCoord({...coord, [name]: data})
+        setFile(URL.createObjectURL(data))
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal',
+          text: 'Format tidak sesuai'
+        })
+      }
+      setLoading(false)
     }
   }
 

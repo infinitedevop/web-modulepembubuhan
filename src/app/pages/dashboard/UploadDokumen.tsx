@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {useContext} from 'react'
+import Swal from 'sweetalert2'
 import PdfLogo from '../../../_metronic/assets/images/pdf-logo.png'
 import {PembubuhanContext} from '../../context/PembubuhanContext'
 
@@ -9,10 +10,18 @@ export function UploadDokumen() {
   const uploadKTPPreview = (e: any) => {
     if (e.currentTarget.files.length) {
       const data = e.currentTarget.files[0]
-      let name = 'file'
-      setCoord({...coord, [name]: data})
-      setFile(URL.createObjectURL(data))
-      setLoading(true)
+      if (data.type === 'application/pdf') {
+        let name = 'file'
+        setCoord({...coord, [name]: data})
+        setFile(URL.createObjectURL(data))
+        setLoading(true)
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal',
+          text: 'Format tidak sesuai'
+        })
+      }
     }
   }
 

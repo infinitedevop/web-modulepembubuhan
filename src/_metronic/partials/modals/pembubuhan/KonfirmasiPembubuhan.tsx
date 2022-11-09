@@ -50,10 +50,10 @@ const KonfirmasiPembubuhan = () => {
       .then((res) => {
         setFile(res.data)
         histori(`/reviewPdf/serial_number=${coord[serial_number as keyof typeof coord]}`)
-        setPembubuhanberhasilModal(true)
         setTimeout(() => {
           setLoading(false)
-        }, 7000);
+          setPembubuhanberhasilModal(true)
+        }, 3000);
       })
       .catch((err) => {
         setLoading(false)
