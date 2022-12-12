@@ -91,6 +91,14 @@ export function DashboardWrapper() {
   date.setDate(futureDate)
   const defaultValue = date.toLocaleDateString('en-CA')
 
+  if (defaultValue && dataDokumen.doc_date === undefined) {
+    setDataDokumen({...dataDokumen, doc_date: defaultValue})
+  } else if (dataDokumen.doc_type === undefined) {
+    setDataDokumen({...dataDokumen, doc_type: 'Dokumen lain-lain'})
+  }
+
+  console.log(dataDokumen)
+
   return (
     <div className='mt-6 add-doc'>
       <form className='form-add-doc'>

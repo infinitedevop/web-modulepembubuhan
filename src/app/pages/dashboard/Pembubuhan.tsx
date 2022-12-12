@@ -120,11 +120,11 @@ export function Pembubuhan() {
         let name = 'file'
         setCoord({...coord, [name]: data})
         setFile(URL.createObjectURL(data))
-      }else{
+      } else {
         Swal.fire({
           icon: 'error',
           title: 'Gagal',
-          text: 'Format tidak sesuai'
+          text: 'Format tidak sesuai',
         })
       }
       setLoading(false)
