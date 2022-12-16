@@ -108,8 +108,22 @@ export function Pembubuhan() {
     return () => clearTimeout(timer)
   }, [])
 
+  console.log(coord)
+
   const handlePembubuhan = () => {
-    setKonfirmasiPembubuhanModal(true)
+    const llx = 'llx' as string
+    const lly = 'lly' as string
+    const urx = 'urx' as string
+    const ury = 'ury' as string
+
+    if (
+      coord[llx as keyof typeof coord] !== undefined &&
+      coord[lly as keyof typeof coord] &&
+      coord[urx as keyof typeof coord] &&
+      coord[ury as keyof typeof coord]
+    ) {
+      setKonfirmasiPembubuhanModal(true)
+    }
   }
 
   const handleGantiDokumen = (e: any) => {
