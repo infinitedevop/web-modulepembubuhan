@@ -14,7 +14,7 @@ const MasterLayout = () => {
 
   return (
     <PembubuhanProvider>
-      <div style={{background: 'white'}}>
+      <div style={{background: 'white', height:'-webkit-fill-available'}}>
         {status !== 'internal' ? (
           <div style={{width: '100%'}}>
             <span className='title-internal'>DiMeterai</span>

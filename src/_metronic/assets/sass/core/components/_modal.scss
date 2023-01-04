@@ -171,6 +171,23 @@
     font-size: 23px;
     font-weight: bold;
   }
+
+  .step-pembubuhan {
+    width: 24%;
+    text-align: center;
+    padding: 50px 13px;
+    flex-direction: row;
+  }
+
+  @media screen and (max-width: 480px) {
+    .modal-title {
+      font-size: 20px;
+    }
+
+    .step-pembubuhan {
+      flex-direction: column !important;
+    }
+  }
 }
 
 // Utilities

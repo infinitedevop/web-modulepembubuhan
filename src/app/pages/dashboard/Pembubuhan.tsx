@@ -50,17 +50,25 @@ export function Pembubuhan() {
         height: ref.current?.clientHeight,
       })
 
+      let data = ref.current?.clientWidth
+      let data2 = ref.current?.clientHeight
+      let hasil = data ? (data > 400 ? data / 1500 : data / 822) : 0
+      // let hasil = data ? data / 0.4 : 0
+      // console.log(hasil)
+
       var eMeterai = document.getElementById('meterai')
 
       var imgMeterai = new fabric.Image(eMeterai, {
         preserveObjectStacking: true,
         hasControls: false,
         hasBorders: false,
-        scaleX: 0.88,
-        scaleY: 0.88,
+        scaleX: hasil,
+        scaleY: hasil,
       })
 
-      canvas.add(imgMeterai)
+      if (hasil) {
+        canvas.add(imgMeterai)
+      }
 
       canvas.on('object:moving', function (e: any) {
         var obj = e.target
@@ -107,8 +115,6 @@ export function Pembubuhan() {
     }, 1000)
     return () => clearTimeout(timer)
   }, [])
-
-  console.log(coord)
 
   const handlePembubuhan = () => {
     const llx = 'llx' as string
@@ -170,7 +176,7 @@ export function Pembubuhan() {
     <>
       {loading ? <Loading /> : null}
       <span className='flex mx-auto' style={{background: '#D9D9D9'}}>
-        <div>
+        <div className='style-small'>
           <div
             className='pdf-pagination mb-1 mt-10'
             style={{display: 'flex', justifyContent: 'space-between', padding: '0 5rem '}}
@@ -194,7 +200,7 @@ export function Pembubuhan() {
                 value={pageNumber}
                 style={{width: '30px'}}
                 onChange={handleChange}
-              />{' '}
+              />
               of {numPages || '--'}
             </p>
             <button
@@ -203,7 +209,7 @@ export function Pembubuhan() {
               onClick={nextPage}
               className={`pagination-pdf fw-bold`}
             >
-              Selanjutnya{' '}
+              Selanjutnya
               <img
                 src={pageNumber === numPages ? NextIcon : NextIconBold}
                 style={{paddingRight: '8px'}}
@@ -211,11 +217,7 @@ export function Pembubuhan() {
               />
             </button>
           </div>
-          <div
-            ref={ref}
-            id='pdf-wrapper'
-            style={{width: 'fit-content', margin: '0 auto', marginTop: '1rem'}}
-          >
+          <div ref={ref} id='pdf-wrapper ' className='style-small-2'>
             <div className='canvas-wrapper' style={{position: 'absolute'}}>
               <canvas id='canvasMeterai' className='z-2' style={{zIndex: '2'}}>
                 <img

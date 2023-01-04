@@ -72,7 +72,7 @@ export function UploadDokumen() {
 
   return (
     <span className='flex'>
-      <ul style={{listStyleType: 'none'}}>
+      <ul style={{listStyleType: 'none', paddingLeft: '0'}}>
         <li
           id='empty'
           className='h-full w-full text-center flex flex-col justify-center items-center'
@@ -80,7 +80,7 @@ export function UploadDokumen() {
           <div className='mx-auto my-auto' ref={drop}>
             <label htmlFor='upload-button2'>
               <img src={PdfLogo} width='55' className='pdf-logo' alt='pdf-logo' />
-              <p className='text-center text-sm mt-7 font-600' style={{lineHeight: '1px'}}>
+              <p className='text-center text-sm mt-7 font-600'>
                 Klik untuk mengunggah atau Seret file PDF Anda disini
               </p>
               <span className='keterangan'>Ukuran dokumen yang direkomendasikan adalah A4</span>

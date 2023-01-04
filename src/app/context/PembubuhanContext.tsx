@@ -19,7 +19,7 @@ const contextDefaultValues: PembubuhanContextState = {
 export const PembubuhanContext = createContext<PembubuhanContextState>(contextDefaultValues)
 
 const PembubuhanProvider: FC = ({children}) => {
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(true)
   const [loading, setLoading] = useState(false)
   const [konfirmasiPembubuhanModal, setKonfirmasiPembubuhanModal] = useState(false)
   const [pembubuhanberhasilModal, setPembubuhanberhasilModal] = useState(false)

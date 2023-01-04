@@ -27,7 +27,7 @@ const StepPembubuhan = () => {
       text: 'Donwload kembali file Anda. Kini dokumen Anda telah sukses dibubuhkan dengan e-meterai!',
     },
   ]
-  
+
   return (
     <>
       {modal ? (
@@ -58,7 +58,7 @@ const StepPembubuhan = () => {
                     return (
                       <div
                         key={index}
-                        className={`text-white step-border row card-xl-stretch ${
+                        className={`text-white step-border card-xl-stretch step-pembubuhan ${
                           index === 0
                             ? 'bg-dark-cyan'
                             : index === 1
@@ -67,7 +67,6 @@ const StepPembubuhan = () => {
                             ? 'bg-purple'
                             : 'bg-blue'
                         }`}
-                        style={{width: '24%', textAlign: 'center', padding: '50px 13px'}}
                       >
                         <img
                           src={`${

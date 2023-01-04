@@ -5,7 +5,11 @@ import {useLayout} from '../core'
 const Footer: FC = () => {
   const {classes} = useLayout()
   return (
-    <div className='footer py-8 d-flex flex-lg-column' id='kt_footer'>
+    <div
+      className='footer py-8 d-flex flex-lg-column'
+      id='kt_footer'
+      style={{position: 'fixed', bottom: '0', width:'100%'}}
+    >
       {/* begin::Container */}
       <div
         className={`${classes.footerContainer} d-flex flex-column flex-md-row align-items-center justify-content-between`}
